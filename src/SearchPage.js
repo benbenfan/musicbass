@@ -14,7 +14,7 @@ class SearchPage extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Song Submitted: ' + this.state.value);
+    alert('Request Submitted: ' + this.state.value);
     event.preventDefault();
   }
 
@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Song Name:
+          <h1>Enter Search:</h1>
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />

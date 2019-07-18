@@ -5,10 +5,10 @@ class Author extends Component {
     return (
       <div>
         <h2>Authors</h2>
-        <p>Please contact us at <br></br>
-            <a href="byfan@wisc.edu">Benjamin Fan</a>.<br></br>
-            <a href="byfan@wisc.edu">Chen Xiang</a>.<br></br>
-            <a href="byfan@wisc.edu">Hao Yi</a>.<br></br>
+        <p>Group Member<br></br>
+            <a href="byfan@wisc.edu">Benjamin Fan</a><br></br>
+            <a href="cxiang@wisc.edu">Cheng Xiang</a><br></br>
+            <a href="hlu72@wisc.edu">Haoyi Lu</a><br></br>
         <br></br>
         <a
           className="App-link"
