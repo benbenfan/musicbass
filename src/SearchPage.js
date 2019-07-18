@@ -1,6 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react'
+import ReactSearchBox from 'react-search-box'
+import SearchField from "react-search-field";
 
-class SearchPage extends React.Component {
+class SearchPage extends Component {
+  // Fake data, needs to be pulled from database eventually
+  data = [
+    {
+      key: 'despacito',
+      value: 'Despacito',
+    },
+    {
+      key: 'loveMe',
+      value: 'Love Me Like You Do',
+    },
+    {
+      key: 'CanonD',
+      value: 'Canon in D',
+    },
+    {
+      key: 'Talk',
+      value: 'Talk',
+    },
+    {
+      key: 'Suge',
+      value: 'Suge',
+    },
+  ]
+
+
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -20,13 +47,37 @@ class SearchPage extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <h1>Enter Search:</h1>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      // <form onSubmit={this.handleSubmit}>
+      //   <label>
+      //     <h1>Enter Search:</h1>
+      //     <input type="text" value={this.state.value} onChange={this.handleChange} />
+      //   </label>
+      //   <input type="submit" value="Submit" />
+      // </form>
+      // <SearchField
+      //   placeholder="Search Here."
+      //   searchText="Search Text"
+      //   classNames="searchF"
+      //   onChange={this.handleChange}
+      //   onSubmit={this.handleSubmit}
+      // />
+      // <br></br>
+      <ReactSearchBox
+        placeholder="Search Here"
+        // value="Suge"
+        dropDownHoverColor = 'red'
+        data={this.data}
+        dropDownBorderColor = 'red'
+        callback={record => console.log(record)}
+        onSelect={record => console.log(record)}
+        onChange={value => console.log(value)}
+        onFocus={() => {
+          console.log('element focused')
+        }}
+        fuseConfigs={{
+          threshold: 0.05,
+        }}
+      />
     );
   }
 }

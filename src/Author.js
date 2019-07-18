@@ -4,11 +4,12 @@ class Author extends Component {
   render() {
     return (
       <div>
-        <h2>Authors</h2>
-        <p>Group Member<br></br>
-            <a href="byfan@wisc.edu">Benjamin Fan</a><br></br>
-            <a href="cxiang@wisc.edu">Cheng Xiang</a><br></br>
-            <a href="hlu72@wisc.edu">Haoyi Lu</a><br></br>
+        <h3>Authors</h3>
+        <ul >
+          <li>Benjamin Fan: <a href="byfan@wisc.edu">byfan@wisc.edu : </a></li>
+          <li>Cheng Xiang: <a href="cxiang@wisc.edu">cxiang@wisc.edu</a></li>
+          <li>Haoyi Lu: <a href="hlu72@wisc.edu">hlu72@wisc.edu</a></li>
+        </ul>
         <br></br>
         <a
           className="App-link"
@@ -18,7 +19,7 @@ class Author extends Component {
         >
           Heroku Link
         </a>
-        </p>
+        
       </div>
     );
   }

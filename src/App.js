@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from './logo.svg';
+import logo from './vinyl.svg';
 import './App.css';
 import {
   Route,
@@ -9,9 +9,10 @@ import {
 import SearchPage from './SearchPage.js'
 import Player from './Container/Player.js'
 import Author from './Author.js'
+import Results from './Container/Results.js'
 import{bounce} from 'react-animations';
 import styled, {keyframes} from 'styled-components';
-// import Preferences from './Container/Preferences.js/index.js'
+import Preferences from './Container/Preferences.js'
 
 const Bounce = styled.div `animation: 2s ${keyframes`${bounce}`} infinite`;
 function App(){
@@ -20,20 +21,22 @@ function App(){
       <header className="App-header">
         
         <img src={logo} className="App-logo" alt="logo" />
+        <Bounce><h1>MusicBass</h1></Bounce>
         <HashRouter>
         <div>
-          <Bounce><h1>MusicBass</h1></Bounce>
           <ul className="header">
             <li><NavLink to="/">Search</NavLink></li>
+            {/* <li><NavLink to="/Search">Search</NavLink></li> */}
             <li><NavLink to="/button">Button</NavLink></li>
             <li><NavLink to="/author">Author</NavLink></li>
-            {/* <li><NavLink to="/Preferences">Preferences</NavLink></li> */}
+            <li><NavLink to="/Preferences">Preferences</NavLink></li>
           </ul>
           <div className="content">
             <Route path="/" component={SearchPage}/>
+            {/* <Route path="/Search" component={SearchPage}/> */}
             <Route path="/button" component={Player}/>
             <Route path="/author" component={Author}/>
-            {/* <Route path="/Preferences" component={Preferences}/> */}
+            <Route path="/Preferences" component={Preferences}/>
           </div>
           <div className="content">
              
