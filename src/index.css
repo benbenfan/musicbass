@@ -24,7 +24,8 @@ ul.header li {
   margin: 0;
 }
 ul.header {
-  background-color: #111;
+  background-color: #1e2127;
+  border-radius: 15px;
   padding: 0;
 }
 ul.header li a {

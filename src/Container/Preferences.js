@@ -69,7 +69,7 @@ class Preferences extends React.Component {
                 control={<Radio color="primary" />}
                 label={
                   <div>
-                    {this.state.value === preference.Id ? <div>if true show</div> : ""}
+                    {this.state.value === preference.Id ? <div>Testing </div> : ""}
                   </div>
                 }
               />
