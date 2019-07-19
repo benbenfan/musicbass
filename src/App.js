@@ -25,14 +25,14 @@ function App(){
         <HashRouter>
         <div>
           <ul className="header">
-            <li><NavLink to="/">Search</NavLink></li>
-            {/* <li><NavLink to="/Search">Search</NavLink></li> */}
+            <li><NavLink to="/"></NavLink></li>
+            <li><NavLink to="/Search">Search</NavLink></li>
             <li><NavLink to="/button">Button</NavLink></li>
             <li><NavLink to="/author">Author</NavLink></li>
             <li><NavLink to="/Preferences">Preferences</NavLink></li>
           </ul>
           <div className="content">
-            <Route path="/" component={SearchPage}/>
+            <Route path="/Search" component={SearchPage}/>
             {/* <Route path="/Search" component={SearchPage}/> */}
             <Route path="/button" component={Player}/>
             <Route path="/author" component={Author}/>
