@@ -8,7 +8,7 @@ class Results extends PureComponent {
     this.getStudent();
     }
     getStudent = _ => {
-        fetch('http://localhost:3306')
+        fetch('http://localhost:3001') // proxy location
         .then(response => console.log(response))//response.json())
         .then(({response}) => this.setState({student: 'response.student'}))
         .catch(error => console.log(error));

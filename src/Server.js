@@ -1,7 +1,7 @@
 // using express module of node to route to database
 const express = require('express');
 //set port to 3000 or let auto process port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 // initialize express
 const app = express();
 // require mysql in node modules
