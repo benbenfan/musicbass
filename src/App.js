@@ -32,8 +32,8 @@ function App(){
             <li><NavLink to="/Preferences">Preferences</NavLink></li>
           </ul>
           <div className="content">
+            <Route path="/" component={Results}/>
             <Route path="/Search" component={SearchPage}/>
-            {/* <Route path="/Search" component={SearchPage}/> */}
             <Route path="/button" component={Player}/>
             <Route path="/author" component={Author}/>
             <Route path="/Preferences" component={Preferences}/>

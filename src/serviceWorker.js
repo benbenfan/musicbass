@@ -133,3 +133,9 @@ export function unregister() {
     });
   }
 }
+
+module.export = function(app,connection) {
+  app.get('/', function(req, res) {
+    res.send('Starting Musicbass');
+  });
+};
