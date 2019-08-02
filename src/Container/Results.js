@@ -3,41 +3,29 @@ import axios from 'axios';
 
 class Results extends PureComponent {
     state = {
-        students:[]
+      users:[]
     }
     componentDidMount(){
-      this.getStudent();
+      this.getUsers();
     }
-    // componentDidMount() {
-    //   fetch('/api/load').then(res => res.json()).then(message => this.setState({}))
-    // }
-    getStudent = _ => {
-        fetch('http://localhost:3001') // proxy location
-        .then(response => console.log(response))//response.json())
-        .then(({response}) => this.setState({student: 'response.student'}))
-        .catch(error => console.log(error));
-      //   axios.get('/students')
-      // .then((data) => {
-      //   console.log(data.data.students);
-      //   this.setState({users: data.data.studentss});
-      // })
-      // .catch(error => console.log(error));
+  
+    getUsers = _ => {
+          axios.get('/users')
+      .then((data) => {
+        console.log(data.data.users);
+        this.setState({users: data.data.users});
+      })
+      // .then(({response}) => this.setState({users: response.users}))
+      .catch(error => console.log(error));
     }
-    showStudents = student => <div key={student.snum}>{student.sname}</div>
-    update = () => {
-      // this.showStudents();
-  }
-
-  render() {
-    const{students} = this.state;
-    return (
-        <div className="student">
-            {/* {students.map(this.showStudent)} */}
-            <button onClick={this.update}>
-          Update
-        </button>
+    showUsers = user => <div key={user.cname}>{user.cname}</div>
+    render() {//building react method that comes inse od react component
+      const { users } = this.state;
+      return (//jsx code and can return only a single parent tag
+        <div className="App">
+          {users.map(this.showUsers)}
         </div>
-    )
+      );
   }
 }
 
