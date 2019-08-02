@@ -10,10 +10,10 @@ class Results extends PureComponent {
     }
   
     getUsers = _ => {
-          axios.get('/songs')
+          axios.get('/users')
       .then((data) => {
-        console.log(data.data.songs);
-        this.setState({users: data.data.songs});
+        console.log(data.data.users);
+        this.setState({users: data.data.users});
       })
       // .then(({response}) => this.setState({users: response.users}))
       .catch(error => console.log(error));
