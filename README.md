@@ -1,3 +1,6 @@
 ## Musicbass
+Start database with 'mysql -u root -p'
 
-Run with 'npm start' or 'heroku open'
+CD into server and run 'npm install' , then run 'node ./bin/www'
+
+CD into src and run 'npm install' and run 'npm start'

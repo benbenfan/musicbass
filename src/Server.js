@@ -7,7 +7,7 @@ const app = express();
 // require mysql in node modules
 const mysql = require('mysql');
 
-const connection = mysql.creatConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password:'@Frontier11',

@@ -1,30 +1,38 @@
 import React, { PureComponent } from 'react'
+import axios from 'axios';
 
 class Results extends PureComponent {
     state = {
         students:[]
     }
     componentDidMount(){
-    this.getStudent();
+      this.getStudent();
     }
+    // componentDidMount() {
+    //   fetch('/api/load').then(res => res.json()).then(message => this.setState({}))
+    // }
     getStudent = _ => {
         fetch('http://localhost:3001') // proxy location
         .then(response => console.log(response))//response.json())
         .then(({response}) => this.setState({student: 'response.student'}))
         .catch(error => console.log(error));
+      //   axios.get('/students')
+      // .then((data) => {
+      //   console.log(data.data.students);
+      //   this.setState({users: data.data.studentss});
+      // })
+      // .catch(error => console.log(error));
     }
-    showStudent = student => <div key={student.snum}>{student.sname}</div>
-  update = () => {
-    // this.setState({
-    //   data: shuffle(mockData).slice(0, Math.floor(Math.random() * ((mockData.length + 2) - (5 + 1))) + 5),
-    // })
+    showStudents = student => <div key={student.snum}>{student.sname}</div>
+    update = () => {
+      // this.showStudents();
   }
 
   render() {
     const{students} = this.state;
     return (
         <div className="student">
-            {students.map(this.showStudent)}
+            {/* {students.map(this.showStudent)} */}
             <button onClick={this.update}>
           Update
         </button>
@@ -33,4 +41,4 @@ class Results extends PureComponent {
   }
 }
 
-export default Results
+export default Results;
