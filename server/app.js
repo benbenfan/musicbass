@@ -70,14 +70,15 @@ connection.connect(function(err){
   (err)? console.log(err+'+++++++++++++++//////////'): console.log('connection********');
 });
 
-connection.query('SELECT c.cname FROM Class c WHERE c.room=\'R128\' OR c.meets_at LIKE \'MWF%\';', function (error, results, fields) {
-  if (error)
-      throw error;
+// test
+// connection.query('SELECT c.cname FROM Class c WHERE c.room=\'R128\' OR c.meets_at LIKE \'MWF%\';', function (error, results, fields) {
+//   if (error)
+//       throw error;
 
-  results.forEach(result => {
-      // console.log(result);
-  });
-});
+//   results.forEach(result => {
+//       // console.log(result);
+//   });
+// });
 
 connection.end(function(err) {
 if (err) {

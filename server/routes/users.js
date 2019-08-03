@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password:'@Frontier11',
-  database:'university'
+  database:'music'
 });
 
 // /* GET  listing. */
@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 //   res.send('respond with data');
 // });
 router.get('/', function(req, res, next) {
-  connection.query('SELECT c.cname FROM Class c WHERE c.room=\'R128\' OR c.meets_at LIKE \'MWF%\';', function (error, results, fields) {
+  connection.query('SELECT * FROM artist limit 10;', function (error, results, fields) {
     if (error){
       res.send(error);
       throw error;
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
     res.json({users:results});
     // res.send({users:results});
     results.forEach(result => {
-        console.log(result);
+        console.log(result.length);
     });
   });   
 });

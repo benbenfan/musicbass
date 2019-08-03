@@ -14,15 +14,18 @@
     "react": "^16.8.6",
     "react-animations": "^1.0.0",
     "react-dom": "^16.8.6",
+    "react-infinite-scroll": "^0.1.5",
     "react-instantsearch-dom": "^5.7.0",
     "react-move": "^6.0.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-search": "^2.1.0",
     "react-search-box": "^2.0.1",
     "react-search-field": "^1.0.0",
     "react-transition-group": "^4.2.1",
     "routes-js": "^0.1.8",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "start": "react-scripts start",

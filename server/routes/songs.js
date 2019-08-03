@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password:'@Frontier11',
-  database:'university'
+  database:'music'
 });
 
 // /* GET  listing. */
@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
 //   res.send('respond with data');
 // });
 router.get('/', function(req, res, next) {
-  connection.query('SELECT * FROM Student;', function (error, results, fields) {
+  connection.query('SELECT * FROM song;', function (error, results, fields) {
     if (error){
       res.send(error);
       throw error;
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
     res.json({songs:results});
     // res.send({users:results});
     results.forEach(result => {
-        console.log(result);
+        // console.log();
     });
   });   
 });
