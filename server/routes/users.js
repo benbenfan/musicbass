@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
     res.json({users:results});
     // res.send({users:results});
     results.forEach(result => {
-        console.log(result.length);
+        console.log(result);
     });
   });   
 });
