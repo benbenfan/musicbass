@@ -1,17 +1,33 @@
 import React, { Component } from 'react'
+import Select from 'react-select';
 import axios from 'axios'
-// import ReactSearchBox from 'react-search-box'
-// import SearchField from "react-search-field";
+import "./SearchPage.css";
 
 class SearchPage extends Component {
+  constructor(props) {
+    super(props);
+    // this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
   state = {
       query: '',
       value: '',
-      users:[]
+      selected: 0,
+      users:[],
+      searchBy: [
+        { label: "find songs in best selling album", value: 0 },
+        { label: "find songs with highest rating which is rock genre", value: 1 },
+        { label: "find songs performed by most popular musician (highest number of tophits)", value: 2 },
+        { label: "find songs performed by experiend musician (who performed the most number of songs)", value: 3 },
+        { label: "find songs produced by company with the greatest number of signed artists", value: 4 },
+      ]
     }
     componentDidMount(){
       this.getUsers();
     }
+    
   
     getUsers = _ => {
           axios.get('/users')
@@ -23,7 +39,7 @@ class SearchPage extends Component {
       // .then(({response}) => this.setState({users: response.users}))
       .catch(error => console.log(error));
     }
-    showUsers = user => <div key={user.name}>{user.name}</div>
+    showUsers = user => <div key={user.song_ID}>{user.name}</div>
 
   // HeaderPostAction = () =>{
   //   // Send a POST request
@@ -66,25 +82,18 @@ class SearchPage extends Component {
   //   });
   // }
 
-  constructor(props) {
-    super(props);
-    // this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  handleInputChange = selectedOption => {
+    // this.setState({
+    //   query: this.search.value
+    // }, () => {
+    //   if (this.state.query && this.state.query.length > 1) {
+    //     if (this.state.query.length % 2 === 0) {
+    //       this.getInfo()
+    //     }
+    //   } 
+    // })
+    this.setState({ value: selectedOption.value });
   }
-
-  // handleInputChange = () => {
-  //   this.setState({
-  //     query: this.search.value
-  //   }, () => {
-  //     if (this.state.query && this.state.query.length > 1) {
-  //       if (this.state.query.length % 2 === 0) {
-  //         this.getInfo()
-  //       }
-  //     } 
-  //   })
-  // }
   
   handleChange(event) {
     // this.getInfo();
@@ -110,45 +119,24 @@ class SearchPage extends Component {
   }
 
   render() {
-    const { users } = this.state;
+    const { users, searchBy } = this.state;
+    
+    
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form className= "darken" onSubmit={this.handleSubmit}>
           <label>
             <h1>Enter Search:</h1>
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
+            <Select options={ searchBy }  onChange={this.handleInputChange}/>
+            {/* <input type="text" value={this.state.value} onChange={this.handleChange} /> */}
           </label>
-          <input type="submit" value="Submit" />
+          <input className = "button" type="submit" value="Submit" />
         </form>
+        
         <br/>
-          <h2>Top Results by Artist name</h2>
-          {/* <p> */}
+          <h2>Top Results by name</h2>
           {users.map(this.showUsers)}
       </div>
-      // <SearchField
-      //   placeholder="Search Here."
-      //   searchText="Search Text"
-      //   classNames="searchF"
-      //   onChange={this.handleChange}
-      //   onSubmit={this.handleSubmit}
-      // />
-      // <br></br>
-      // <ReactSearchBox
-      //   placeholder="Search Here"
-      //   // value="Suge"
-      //   dropDownHoverColor = 'white'
-      //   data={this.data}
-      //   dropDownBorderColor = 'white'
-      //   callback={record => console.log(record)}
-      //   onSelect={record => console.log(record)}
-      //   onChange={value => console.log(value)}
-      //   onFocus={() => {
-      //     console.log('element focused')
-      //   }}
-      //   fuseConfigs={{
-      //     threshold: 0.05,
-      //   }}
-      // />
     );
   }
 }

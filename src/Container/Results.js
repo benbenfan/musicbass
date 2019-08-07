@@ -18,7 +18,7 @@ class Results extends PureComponent {
       // .then(({response}) => this.setState({users: response.users}))
       .catch(error => console.log(error));
     }
-    showUsers = user => <div key={user.name}>{user.name}</div>
+    showUsers = user => <div key={user.song_ID}>{user.name}</div>
     render() {//building react method that comes inse od react component
       const { users } = this.state;
       return (//jsx code and can return only a single parent tag

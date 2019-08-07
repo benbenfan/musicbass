@@ -39,7 +39,7 @@ function recomend(params) {
   var value = 0;
   if (!Number.isInteger(parseInt(params.name)) || parseInt(params) === 'NaN'){
     console.log('NaN: ' + params.name)
-  } else if (parseInt(params.name) > 5){
+  } else if (parseInt(params.name) > 4){
     console.log('Out of bounds: ' + params.name)
   } else {
     value = parseInt(params.name);
@@ -72,7 +72,7 @@ router.all('/', function(req, res, next) {
     "SELECT s.name FROM Song " +
     "WHERE s.rock = 1 AND s.rating IN (" +
     "SELECT MAX(s2.rating) "+ 
-    "FROM Song s2 );",
+    "FROM Song s2);",
 
     // 3. find songs performed by most popular musician (highest number of tophits)
 
@@ -103,7 +103,7 @@ router.all('/', function(req, res, next) {
   var option = recomend(req.body)
  
   // connection.query(sql, conditions.values, function (error, results, fields) {
-  connection.query(queries[option], function (error, results, fields) {
+  connection.query(advQueries[option], function (error, results, fields) {
     if (error){
       res.send(error);
       res.end(JSON.stringify(results));
