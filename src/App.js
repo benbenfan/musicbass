@@ -6,7 +6,7 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
-import SearchPage from './SearchPage.js'
+import SearchPage from './Container/SearchPage.js'
 import Player from './Container/Player.js'
 import Author from './Author.js'
 import Results from './Container/Results.js'

@@ -25,9 +25,9 @@ class Results extends PureComponent {
         <div className="App">
           <br/>
           <h2>Top Results by Artist name</h2>
-          <p>
+          {/* <p> */}
           {users.map(this.showUsers)}
-          </p>
+          {/* </p> */}
         </div>
       );
   }
