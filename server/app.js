@@ -25,12 +25,12 @@ app.use('/users', usersRouter);
 app.use('/songs', songsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -44,13 +44,13 @@ app.use(function(err, req, res, next) {
 //CORS
 var cors = require('cors')
 app.use(cors())
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 app.get('/users/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
+  res.json({ msg: 'This is CORS-enabled for all origins!' })
 })
 app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
@@ -62,19 +62,19 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password:'@Frontier11',
-  database:'university'
+  password: '@Frontier11',
+  database: 'university'
 });
 
-connection.connect(function(err){
-  (err)? console.log(err+'+++++++++++++++//////////'): console.log('connection********');
+connection.connect(function (err) {
+  (err) ? console.log(err + '+++++++++++++++//////////') : console.log('connection********');
 });
 
-connection.end(function(err) {
-if (err) {
-  return console.log('error:' + err.message);
-}
-console.log('Close the database connection.');
+connection.end(function (err) {
+  if (err) {
+    return console.log('error:' + err.message);
+  }
+  console.log('Close the database connection.');
 });
 
 require('./routes/html-routes')(app, connection);

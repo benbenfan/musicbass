@@ -12,34 +12,34 @@ class SearchPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   state = {
-      query: '',
-      value: '',
-      selected: 0,
-      users:[],
-      searchBy: [
-        { label: "find songs in best selling album", value: 0 },
-        { label: "find songs with highest rating which is rock genre", value: 1 },
-        { label: "find songs performed by most popular musician (highest number of tophits)", value: 2 },
-        { label: "find songs performed by experiend musician (who performed the most number of songs)", value: 3 },
-        { label: "find songs produced by company with the greatest number of signed artists", value: 4 },
-      ]
-    }
-    componentDidMount(){
-      this.getUsers();
-    }
-    
-  
-    getUsers = _ => {
-          axios.get('/users')
+    query: '',
+    value: '',
+    selected: 0,
+    users: [],
+    searchBy: [
+      { label: "find songs in best selling album", value: 0 },
+      { label: "find songs with highest rating which is rock genre", value: 1 },
+      { label: "find songs performed by most popular musician (highest number of tophits)", value: 2 },
+      { label: "find songs performed by experiend musician (who performed the most number of songs)", value: 3 },
+      { label: "find songs produced by company with the greatest number of signed artists", value: 4 },
+    ]
+  }
+  componentDidMount() {
+    this.getUsers();
+  }
+
+
+  getUsers = _ => {
+    axios.get('/users')
       .then((data) => {
         // axios returns an object named data so data.data
         console.log(data.data.users);
-        this.setState({users: data.data.users});
+        this.setState({ users: data.data.users });
       })
       // .then(({response}) => this.setState({users: response.users}))
       .catch(error => console.log(error));
-    }
-    showUsers = user => <div key={user.song_ID}>{user.name}</div>
+  }
+  showUsers = user => <div key={user.song_ID}>{user.name}</div>
 
   // HeaderPostAction = () =>{
   //   // Send a POST request
@@ -67,7 +67,7 @@ class SearchPage extends Component {
   //     console.log("Post Error : " +error);
   //   }); 
   // }
-  
+
 
   // sendRequest = _ => {
   //   axios.post('http://localhost:3001/users', {
@@ -94,10 +94,10 @@ class SearchPage extends Component {
     // })
     this.setState({ value: selectedOption.value });
   }
-  
+
   handleChange(event) {
     // this.getInfo();
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
   handleSubmit = async event => {
@@ -111,7 +111,7 @@ class SearchPage extends Component {
     const name = this.state.value;
     axios.post(`/users`, { name })
       .then(data => {
-        this.setState({users: data.data.users});
+        this.setState({ users: data.data.users });
         // console.log(name);
         // console.log(data.data);
         console.log(this.showUsers)
@@ -120,22 +120,22 @@ class SearchPage extends Component {
 
   render() {
     const { users, searchBy } = this.state;
-    
-    
+
+
     return (
       <div>
-        <form  onSubmit={this.handleSubmit}>
-          <label className= "darken">
+        <form onSubmit={this.handleSubmit}>
+          <label className="darken">
             <h1>Choose a Recomendation:</h1>
-            <Select options={ searchBy }  onChange={this.handleInputChange}/>
+            <Select options={searchBy} onChange={this.handleInputChange} />
             {/* <input type="text" value={this.state.value} onChange={this.handleChange} /> */}
           </label>
-          <input className = "button" type="submit" value="Submit" />
+          <input className="button" type="submit" value="Submit" />
         </form>
-        
-        <br/>
-          <h2>Recomendations by name</h2>
-          {users.map(this.showUsers)}
+
+        <br />
+        <h2>Recomendations by name</h2>
+        {users.map(this.showUsers)}
       </div>
     );
   }
