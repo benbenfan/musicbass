@@ -9,25 +9,40 @@ class Preferences extends Component {
 		super(props);
 		this.state = {
 			toggle: false,
-			results: [],
-			value: ''
+			users: [],
+			value: '',
+			query: ''
 		};
 		this.handleChange = this.handleChange.bind(this);
     	this.handleSubmit = this.handleSubmit.bind(this);
 		this.toggleState = this.toggleState.bind(this);
 	}
 
-	toggleState() {
+	buildQuery () {
+		var str = 'SELECT * FROM '
+		if (this.event.value === 0) {
+			str.push("song");
+			// str.push("'%" + params.name + "%'")
+		} else if (this.event.value === 1) {
+			str.push("artist");
+			// str.push("'%" + params.name + "%'")
+		}
+		return str;
+	}
+
+	toggleState (event) {
 		this.setState({
+			value: event.target.value,
 			toggle: !this.state.toggle
 		});
+		console.log(event.target.value );
 	}
 	componentDidMount() {
 		this.getUsers();
 	  }
 	
 	
-	  getUsers = _ => {
+	getUsers = _ => {
 		axios.get('/users')
 		  .then((data) => {
 			// axios returns an object named data so data.data
@@ -42,6 +57,7 @@ class Preferences extends Component {
 	  handleChange(event) {
 		// this.getInfo();
 		this.setState({ value: event.target.value });
+		// console.log(event.target.value);
 	  }
 	
 	  handleSubmit = async event => {
@@ -52,7 +68,7 @@ class Preferences extends Component {
 		// const name = {
 		//   name: this.state.value
 		// };
-		const name = this.state.value;
+		const name = this.buildQuery;
 		axios.post(`/users`, { name })
 		  .then(data => {
 			this.setState({ users: data.data.users });
@@ -72,7 +88,7 @@ class Preferences extends Component {
 					id="switch_left"
 					class = "radio"
 					name="switchToggle"
-					value={this.props.leftLabel}
+					value={"0"}
 					onChange={this.toggleState}
 					checked={!this.state.toggle}
 				></input>
@@ -86,15 +102,15 @@ class Preferences extends Component {
 					id="switch_right"
 					class = "radio"
 					name="switchToggle"
-					value={this.props.rightLabel}
+					value={"1"}
 					onChange={this.toggleState}
 					checked={this.state.toggle}
 				/>
 				<label htmlFor="switch_right">
 					Artists
-				{this.props.rightLabel}
+				{/* {this.props.rightLabel} */}
 				</label>
-				<input type="text" class = "text" value={this.state.value} onChange={this.handleChange} />
+				<input type="text" class = "text" value={this.state.query} onChange={this.handleChange} />
 				<input className="button" type="submit" value="Submit" />
 				
 			</form>

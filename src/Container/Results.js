@@ -24,7 +24,7 @@ class Results extends PureComponent {
       return (//jsx code and can return only a single parent tag
         <div className="App">
           <br/>
-          <h2>Top Results by Artist name</h2>
+          <h2>Top Songs by song name</h2>
           {/* <p> */}
           {users.map(this.showUsers)}
           {/* </p> */}

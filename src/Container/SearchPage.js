@@ -36,10 +36,10 @@ class SearchPage extends Component {
         console.log(data.data.users);
         this.setState({ users: data.data.users });
       })
-      // .then(({response}) => this.setState({users: response.users}))
+      .then(({response}) => this.setState({users: response.users}))
       .catch(error => console.log(error));
   }
-  showUsers = user => <div key={user.song_ID}>{user.name}</div>
+  showUsers = user => <div key={user.SONG_ID}>{user.name}</div>
 
   // HeaderPostAction = () =>{
   //   // Send a POST request

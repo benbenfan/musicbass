@@ -65,39 +65,55 @@ router.all('/', function (req, res, next) {
 
   const advQueries = [
     // 1. find songs in best selling album
-    "SELECT s.name FROM Song s JOIN Album a ON s.album_ID=a.album_ID " +
-    "WHERE a.salesNumber IN (SElECT MAX(a2.salesNumber) FROM Album a2);",
-
+    "SELECT DISTINCT s.name " +
+    "FROM Song s JOIN Album a ON s.album_ID=a.album_ID " +
+    "WHERE a.salesNumber IN ( " +
+    "SElECT MAX(a2.salesNumber) " +
+    "FROM Album a2);",
     // 2. find songs with highest rating which is rock genre
-    "SELECT s.name FROM Song " +
-    "WHERE s.rock = 1 AND s.rating IN (" +
+    "SELECT DISTINCT s.name " +
+    "FROM Song s " +
+    "WHERE s.rock = 1 AND s.rating IN ( " +
     "SELECT MAX(s2.rating) " +
     "FROM Song s2);",
 
     // 3. find songs performed by most popular musician (highest number of tophits)
 
-    "SELECT DISTINCT s.name " +
+    "SELECT DISTINCT s.name, s.rating " +
     "FROM Song s JOIN PerformedBy p ON s.song_ID=p.song_ID JOIN Artist a on p.name=a.name " +
-    " WHERE a.tophits = ( " +
-    " SElECT MAX(tophits) " +
-    " FROM Artist a2 );",
+    "WHERE a.tophits = ( " +
+        "SElECT MAX(tophits) " +
+        "FROM Artist a2) " +
+    "ORDER BY s.rating DESC " +
+    "LIMIT 10;",
 
 
     // 4. find songs performed by experiend musician (who performed the most number of songs)
-    "WITH ArtistSongCount AS(SELECT p.name name, COUNT(p.song_ID) count " +
-    "FROM PerformedBy p GROUP BY p.name)" +
-    "SELECT s.name FROM Song s JOIN PerformedBy p ON s.song_ID=p.song_ID " +
-    "WHERE p.name IN ( SELECT a1.name FROM ArtistSongCount a1 " +
-    "WHERE count >= ALL(SELECT a2.count FROM ArtistSongCount a2));",
+    "WITH ArtistSongCount AS( " +
+      "SELECT p.name name, COUNT(p.song_ID) count " +
+      "FROM PerformedBy p " +
+      "GROUP BY p.name) " +
+      "SELECT DISTINCT s.name, s.rating " +
+      "FROM Song s JOIN PerformedBy p ON s.song_ID=p.song_ID " +
+      "WHERE p.name IN ( " +
+          "SELECT a1.name " +
+          "FROM ArtistSongCount a1 " +
+          "WHERE count >= ALL( " +
+              "SELECT a2.count " +
+              "FROM ArtistSongCount a2)) " +
+      "ORDER BY s.rating DESC " +
+      "LIMIT 10;",
 
     // 5. find songs produced by company with the greatest number of signed artists
-    "SELECT s.name " +
+    "SELECT DISTINCT s.name, s.rating " +
     "FROM Song s JOIN Album a ON s.album_ID=a.album_ID " +
-    "JOIN ProducedBy p ON a.album_ID=p.album_ID " +
-    "JOIN Company c ON p.company_Name=c.name " +
+            "JOIN ProducedBy p ON a.album_ID=p.album_ID " +
+            "JOIN Company c ON p.company_Name=c.name " +
     "WHERE c.signedArtists IN ( " +
     "SElECT MAX(c2.signedArtists) " +
-    "FROM Company c2);"
+    "FROM Company c2) " +
+    "ORDER BY s.rating DESC " +
+    "LIMIT 10;"
 
   ]
   var option = recomend(req.body)
@@ -113,7 +129,7 @@ router.all('/', function (req, res, next) {
     res.json({ users: results });
     // res.send({users:results});
     results.forEach(result => {
-      // console.log(result);
+      console.log(result);
     });
   });
 });
