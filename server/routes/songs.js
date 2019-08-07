@@ -10,18 +10,29 @@ const connection = mysql.createConnection({
   database:'music'
 });
 
+function buildQuery(params){
+  var str;
+  if (typeof params.name !== 'undefined') {
+    str = params.name;
+  } else{
+    str = "select * from song where 15<10"
+  }
+  return str;
+}
 // /* GET  listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with data');
 // });
-router.get('/', function(req, res, next) {
-  connection.query('SELECT * FROM song;', function (error, results, fields) {
+router.all('/', function(req, res, next) {
+  var postData = req.body;
+  var query = buildQuery(postData);
+  connection.query(query, function (error, results, fields) {
     if (error){
       res.send(error);
       throw error;
     }
     // res.send({users:results});
-    res.json({songs:results});
+    res.json({users:results});
     // res.send({users:results});
     results.forEach(result => {
         // console.log();

@@ -10,7 +10,7 @@ class Preferences extends Component {
 		this.state = {
 			toggle: false,
 			users: [],
-			value: '',
+			value: 0,
 			query: ''
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -18,13 +18,14 @@ class Preferences extends Component {
 		this.toggleState = this.toggleState.bind(this);
 	}
 
-	buildQuery () {
-		var str = 'SELECT * FROM '
-		if (this.event.value === 0) {
-			str.push("song");
+	buildQuery (option,search) {
+		var str = 'SELECT * FROM ';
+		option = parseInt(option);
+		if (option === 0) {
+			str += "song WHERE name LIKE '%" + search + "%';";
 			// str.push("'%" + params.name + "%'")
-		} else if (this.event.value === 1) {
-			str.push("artist");
+		} else if (option === 1) {
+			str +=  "artist WHERE name LIKE '%" + search + "%';";
 			// str.push("'%" + params.name + "%'")
 		}
 		return str;
@@ -35,7 +36,7 @@ class Preferences extends Component {
 			value: event.target.value,
 			toggle: !this.state.toggle
 		});
-		console.log(event.target.value );
+		// console.log(event.target.value );
 	}
 	componentDidMount() {
 		this.getUsers();
@@ -43,7 +44,7 @@ class Preferences extends Component {
 	
 	
 	getUsers = _ => {
-		axios.get('/users')
+		axios.get('/songs')
 		  .then((data) => {
 			// axios returns an object named data so data.data
 			console.log(data.data.users);
@@ -56,7 +57,7 @@ class Preferences extends Component {
 	
 	  handleChange(event) {
 		// this.getInfo();
-		this.setState({ value: event.target.value });
+		this.setState({ query: event.target.value });
 		// console.log(event.target.value);
 	  }
 	
@@ -68,17 +69,21 @@ class Preferences extends Component {
 		// const name = {
 		//   name: this.state.value
 		// };
-		const name = this.buildQuery;
-		axios.post(`/users`, { name })
+		const option = this.state.value;
+		const search = this.state.query;
+		var name = this.buildQuery(option,search);
+		console.log(name);
+		axios.post(`/songs`, { name })
 		  .then(data => {
 			this.setState({ users: data.data.users });
 			// console.log(name);
 			// console.log(data.data);
-			console.log(this.showUsers)
+			// console.log(this.showUsers)
 		  })
 	  }
 
 	render() {
+		const { users } = this.state;
 		return (
 			<form className="switch-field" onSubmit={this.handleSubmit}>
 				<div className="switch-title">{this.props.title}</div>
@@ -86,7 +91,7 @@ class Preferences extends Component {
 				<input
 					type="radio"
 					id="switch_left"
-					class = "radio"
+					className = "radio"
 					name="switchToggle"
 					value={"0"}
 					onChange={this.toggleState}
@@ -100,7 +105,7 @@ class Preferences extends Component {
 				<input
 					type="radio"
 					id="switch_right"
-					class = "radio"
+					className = "radio"
 					name="switchToggle"
 					value={"1"}
 					onChange={this.toggleState}
@@ -110,9 +115,11 @@ class Preferences extends Component {
 					Artists
 				{/* {this.props.rightLabel} */}
 				</label>
-				<input type="text" class = "text" value={this.state.query} onChange={this.handleChange} />
+				<input type="text" className = "text" value={this.state.query} onChange={this.handleChange} />
 				<input className="button" type="submit" value="Submit" />
-				
+				<br />
+				<h2>Results</h2>
+				{users.map(this.showUsers)}
 			</form>
 			
 		);
