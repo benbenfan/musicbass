@@ -124,9 +124,9 @@ class SearchPage extends Component {
     
     return (
       <div>
-        <form className= "darken" onSubmit={this.handleSubmit}>
-          <label>
-            <h1>Enter Search:</h1>
+        <form  onSubmit={this.handleSubmit}>
+          <label className= "darken">
+            <h1>Choose a Recomendation:</h1>
             <Select options={ searchBy }  onChange={this.handleInputChange}/>
             {/* <input type="text" value={this.state.value} onChange={this.handleChange} /> */}
           </label>
@@ -134,7 +134,7 @@ class SearchPage extends Component {
         </form>
         
         <br/>
-          <h2>Top Results by name</h2>
+          <h2>Recomendations by name</h2>
           {users.map(this.showUsers)}
       </div>
     );

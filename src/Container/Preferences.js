@@ -55,9 +55,6 @@ class Preferences extends Component {
 	}
 }
 
-const ToggleExample = function() {
-		return <Preferences title="Search_By" leftLabel="Songs" rightLabel="Artists"/>;
-}
 
 export default Preferences;
 // Render to DOM
