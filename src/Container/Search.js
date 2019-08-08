@@ -14,7 +14,7 @@ class Search extends Component {
 			display: [
 				"song",
 				"artist",
-				"album"
+				"album",
 			],
 			query: ''
 		};
@@ -62,6 +62,13 @@ class Search extends Component {
 
 	handleChange(event) {
 		// this.getInfo();
+		if(event.target.value.split(' ').length > 1){
+			alert('Please only search one word');
+			return;
+		} else if ( /[^A-Za-z\d]/.test(event.target.value)) {
+			alert("Please enter only letter and numeric characters");
+			return;
+		}
 		this.setState({ query: event.target.value });
 		// console.log(event.target.value);
 	}

@@ -15,6 +15,7 @@ function buildQuery(params) {
   if (typeof params.name !== 'undefined') {
     str = params.name;
   } else {
+    // purposefully prevent any data when input is invalid
     str = "select * from song where 15<10"
   }
   return str;

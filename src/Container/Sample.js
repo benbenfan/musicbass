@@ -28,9 +28,7 @@ class Sample extends PureComponent {
       <div className="App">
         <br />
         <h2>Top Songs by song name</h2>
-        {/* <p> */}
         {users.map(this.showUsers)}
-        {/* </p> */}
       </div>
     );
   }
