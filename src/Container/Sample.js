@@ -1,6 +1,9 @@
+/**
+ * Sample page with a static query
+ */
 import React, { PureComponent } from 'react'
 import axios from 'axios';
-class Results extends PureComponent {
+class Sample extends PureComponent {
     state = {
       users:[]
     }
@@ -32,4 +35,4 @@ class Results extends PureComponent {
       );
   }
 }
-export default Results;
+export default Sample;

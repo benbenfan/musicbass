@@ -14,6 +14,11 @@ const connection = mysql.createConnection({
     database:'university'
 });
 
+/**
+ * This is an unussed page that I was using at first before I realized that I had to create
+ * an entire server, not jsut a page to connect and transfer data correctly in the client/server
+ * database architecture
+ */
 connection.connect(function(err){
     (err)? console.log(err+'+++++++++++++++//////////'): console.log('connection********');
 });

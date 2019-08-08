@@ -6,13 +6,13 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
-import SearchPage from './Container/SearchPage.js'
+import Recommendations from './Container/Recommendations.js'
 import Player from './Container/Player.js'
 import Author from './Author.js'
-import Results from './Container/Results.js'
+import Sample from './Container/Sample.js'
 import { bounce } from 'react-animations';
 import styled, { keyframes } from 'styled-components';
-import Preferences from './Container/Preferences.js'
+import Search from './Container/Search.js'
 
 const Bounce = styled.div`animation: 2s ${keyframes`${bounce}`} infinite`;
 function App() {
@@ -25,18 +25,18 @@ function App() {
         <HashRouter>
           <div>
             <ul className="header">
-              <li><NavLink to="/Results">Example</NavLink></li>
-              <li><NavLink to="/Search">Recomendations</NavLink></li>
-              <li><NavLink to="/Preferences">Search</NavLink></li>
-              {/* <li><NavLink to="/button">Button</NavLink></li> */}
+              <li><NavLink to="/Sample">Example</NavLink></li>
+              <li><NavLink to="/Recommendations">Recommendations</NavLink></li>
+              <li><NavLink to="/Search">Search</NavLink></li>
+              <li><NavLink to="/button">Button</NavLink></li>
               <li><NavLink to="/author">Authors</NavLink></li>
 
             </ul>
             <div className="content">
-              <Route path="/Results" component={Results} />
-              <Route path="/Search" component={SearchPage} />
-              <Route path="/Preferences" component={Preferences} />
-              {/* <Route path="/button" component={Player}/> */}
+              <Route path="/Sample" component={Sample} />
+              <Route path="/Recommendations" component={Recommendations} />
+              <Route path="/Search" component={Search} />
+              <Route path="/button" component={Player}/>
               <Route path="/author" component={Author} />
 
             </div>

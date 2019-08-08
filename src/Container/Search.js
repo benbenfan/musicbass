@@ -1,16 +1,21 @@
 import React from 'react';
-import "./Results.css";
+import "./Search.css";
 import axios from 'axios'
 
 const { Component } = React;
 
-class Preferences extends Component {
+class Search extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			toggle: false,
 			users: [],
-			value: 0,
+			value: 0, // 0:song, 1:artist, 2:album
+			display: [
+				"song",
+				"artist",
+				"album"
+			],
 			query: ''
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -22,10 +27,10 @@ class Preferences extends Component {
 		var str = 'SELECT * FROM ';
 		option = parseInt(option);
 		if (option === 0) {
-			str += "song WHERE name LIKE '%" + search + "%';";
+			str += "song WHERE name LIKE '%" + search + "%' LIMIT 15;";
 			// str.push("'%" + params.name + "%'")
 		} else if (option === 1) {
-			str +=  "artist WHERE name LIKE '%" + search + "%';";
+			str +=  "artist WHERE name LIKE '%" + search + "%' LIMIT 15;";
 			// str.push("'%" + params.name + "%'")
 		}
 		return str;
@@ -118,7 +123,7 @@ class Preferences extends Component {
 				<input type="text" className = "text" value={this.state.query} onChange={this.handleChange} />
 				<input className="button" type="submit" value="Submit" />
 				<br />
-				<h2>Results</h2>
+				<h2>Top Results</h2>
 				{users.map(this.showUsers)}
 			</form>
 			
@@ -126,5 +131,5 @@ class Preferences extends Component {
 	}
 }
 
-export default Preferences;
+export default Search;
 // Render to DOM

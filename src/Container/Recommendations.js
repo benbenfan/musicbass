@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
 import axios from 'axios'
-import "./SearchPage.css";
+import "./Recommendations.css";
 
-class SearchPage extends Component {
+class Recommendations extends Component {
   constructor(props) {
     super(props);
     // this.state = {value: ''};
@@ -130,7 +130,7 @@ class SearchPage extends Component {
             <Select options={searchBy} onChange={this.handleInputChange} />
             {/* <input type="text" value={this.state.value} onChange={this.handleChange} /> */}
           </label>
-          <input className="button" type="submit" value="Submit" />
+          <input className="submission" type="submit" value="Submit" />
         </form>
 
         <br />
@@ -140,4 +140,4 @@ class SearchPage extends Component {
     );
   }
 }
-export default SearchPage;
+export default Recommendations;
