@@ -7,7 +7,7 @@ import {
   HashRouter
 } from "react-router-dom";
 import Recommendations from './Container/Recommendations.js'
-import Player from './Container/Player.js'
+// import Player from './Container/Player.js'
 import Author from './Author.js'
 import Sample from './Container/Sample.js'
 import { bounce } from 'react-animations';
@@ -28,7 +28,7 @@ function App() {
               <li><NavLink to="/Sample">Example</NavLink></li>
               <li><NavLink to="/Recommendations">Recommendations</NavLink></li>
               <li><NavLink to="/Search">Search</NavLink></li>
-              <li><NavLink to="/button">Button</NavLink></li>
+              {/* <li><NavLink to="/button">Button</NavLink></li> */}
               <li><NavLink to="/author">Authors</NavLink></li>
 
             </ul>
@@ -36,7 +36,7 @@ function App() {
               <Route path="/Sample" component={Sample} />
               <Route path="/Recommendations" component={Recommendations} />
               <Route path="/Search" component={Search} />
-              <Route path="/button" component={Player}/>
+              {/* <Route path="/button" component={Player}/> */}
               <Route path="/author" component={Author} />
 
             </div>

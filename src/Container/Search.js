@@ -92,7 +92,7 @@ class Search extends Component {
 		return (
 			<form className="switch-field" onSubmit={this.handleSubmit}>
 				<div className="switch-title">{this.props.title}</div>
-				Search By: <br /><br />
+				Search By: <br />
 				<input
 					type="radio"
 					id="switch_left"
@@ -121,7 +121,7 @@ class Search extends Component {
 				{/* {this.props.rightLabel} */}
 				</label>
 				<input type="text" className = "text" value={this.state.query} onChange={this.handleChange} />
-				<input className="button" type="submit" value="Submit" />
+				<input className="submission" type="submit" value="Submit" />
 				<br />
 				<h2>Top Results</h2>
 				{users.map(this.showUsers)}
