@@ -10,8 +10,8 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password:'@Frontier11',
-    database:'university'
+    password: '@Frontier11',
+    database: 'university'
 });
 
 /**
@@ -19,11 +19,11 @@ const connection = mysql.createConnection({
  * an entire server, not jsut a page to connect and transfer data correctly in the client/server
  * database architecture
  */
-connection.connect(function(err){
-    (err)? console.log(err+'+++++++++++++++//////////'): console.log('connection********');
+connection.connect(function (err) {
+    (err) ? console.log(err + '+++++++++++++++//////////') : console.log('connection********');
 });
 
-require('./serviceWorker.js')(app,connection);
+require('./serviceWorker.js')(app, connection);
 // server start
 app.listen(PORT, () => {
     console.log('Musicbass is on port ${PORT}');

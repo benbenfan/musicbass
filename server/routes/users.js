@@ -82,33 +82,33 @@ router.all('/', function (req, res, next) {
     "SELECT DISTINCT s.name, s.rating " +
     "FROM Song s JOIN PerformedBy p ON s.song_ID=p.song_ID JOIN Artist a on p.name=a.name " +
     "WHERE a.tophits = ( " +
-        "SElECT MAX(tophits) " +
-        "FROM Artist a2) " +
+    "SElECT MAX(tophits) " +
+    "FROM Artist a2) " +
     "ORDER BY s.rating DESC " +
     "LIMIT 10;",
 
 
     // 4. find songs performed by experiend musician (who performed the most number of songs)
     "WITH ArtistSongCount AS( " +
-      "SELECT p.name name, COUNT(p.song_ID) count " +
-      "FROM PerformedBy p " +
-      "GROUP BY p.name) " +
-      "SELECT DISTINCT s.name, s.rating " +
-      "FROM Song s JOIN PerformedBy p ON s.song_ID=p.song_ID " +
-      "WHERE p.name IN ( " +
-          "SELECT a1.name " +
-          "FROM ArtistSongCount a1 " +
-          "WHERE count >= ALL( " +
-              "SELECT a2.count " +
-              "FROM ArtistSongCount a2)) " +
-      "ORDER BY s.rating DESC " +
-      "LIMIT 10;",
+    "SELECT p.name name, COUNT(p.song_ID) count " +
+    "FROM PerformedBy p " +
+    "GROUP BY p.name) " +
+    "SELECT DISTINCT s.name, s.rating " +
+    "FROM Song s JOIN PerformedBy p ON s.song_ID=p.song_ID " +
+    "WHERE p.name IN ( " +
+    "SELECT a1.name " +
+    "FROM ArtistSongCount a1 " +
+    "WHERE count >= ALL( " +
+    "SELECT a2.count " +
+    "FROM ArtistSongCount a2)) " +
+    "ORDER BY s.rating DESC " +
+    "LIMIT 10;",
 
     // 5. find songs produced by company with the greatest number of signed artists
     "SELECT DISTINCT s.name, s.rating " +
     "FROM Song s JOIN Album a ON s.album_ID=a.album_ID " +
-            "JOIN ProducedBy p ON a.album_ID=p.album_ID " +
-            "JOIN Company c ON p.company_Name=c.name " +
+    "JOIN ProducedBy p ON a.album_ID=p.album_ID " +
+    "JOIN Company c ON p.company_Name=c.name " +
     "WHERE c.signedArtists IN ( " +
     "SElECT MAX(c2.signedArtists) " +
     "FROM Company c2) " +
