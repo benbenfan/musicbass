@@ -38,9 +38,9 @@ function buildConditions(params) {
 function recomend(params) {
   var value = 0;
   if (!Number.isInteger(parseInt(params.name)) || parseInt(params) === 'NaN') {
-    console.log('NaN: ' + params.name)
+    // console.log('NaN: ' + params.name)
   } else if (parseInt(params.name) > 4) {
-    console.log('Out of bounds: ' + params.name)
+    // console.log('Out of bounds: ' + params.name)
   } else {
     value = parseInt(params.name);
   }
@@ -78,7 +78,6 @@ router.all('/', function (req, res, next) {
     "FROM Song s2);",
 
     // 3. find songs performed by most popular musician (highest number of tophits)
-
     "SELECT DISTINCT s.name, s.rating " +
     "FROM Song s JOIN PerformedBy p ON s.song_ID=p.song_ID JOIN Artist a on p.name=a.name " +
     "WHERE a.tophits = ( " +
@@ -86,7 +85,6 @@ router.all('/', function (req, res, next) {
     "FROM Artist a2) " +
     "ORDER BY s.rating DESC " +
     "LIMIT 10;",
-
 
     // 4. find songs performed by experiend musician (who performed the most number of songs)
     "WITH ArtistSongCount AS( " +
